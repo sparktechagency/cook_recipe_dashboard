@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import logo from "../../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ import { LuLayoutDashboard } from "react-icons/lu";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { BsSubstack } from "react-icons/bs";
 import { IoFastFoodOutline, IoSettingsOutline } from "react-icons/io5";
+import { MdOutlineCategory } from "react-icons/md";
 import { GrAnnounce } from "react-icons/gr";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import { SlSupport } from "react-icons/sl";
@@ -33,6 +35,12 @@ const items = [
     label: "Recipe",
     icon: <IoFastFoodOutline />,
     link: "/dashboard/recipe",
+  },
+  {
+    key: "category",
+    label: "Category",
+    icon: <MdOutlineCategory />,
+    link: "/dashboard/category",
   },
   {
     key: "subscription",

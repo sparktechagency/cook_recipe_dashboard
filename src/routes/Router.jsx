@@ -25,6 +25,7 @@ import AddRecipe from "../page/Recipe/AddRecipe";
 import EditRecipe from "../page/Recipe/EditRecipe";
 import ProtectedRoute from "../protectedRoute/ProtectedRoute";
 import RecipeDetailsPage from "../page/Recipe/RecipeDetailsPage";
+import Category from "../page/Category/Category";
 import HelpAndSupport from "../page/Settings/HelpAndSupport";
 import AboutUs from "../page/Settings/AboutUs";
 import Subscribe from "../page/subscribe/Subscribe";
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/recipe/editRecipe/:id",
         element: <EditRecipe></EditRecipe>
+      },
+      {
+        path: "/dashboard/category",
+        element: <Category></Category>
       },
       {
         path: "/dashboard/adPromotion",

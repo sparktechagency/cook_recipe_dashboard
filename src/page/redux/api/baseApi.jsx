@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: "http://10.10.20.11:5005",
+  // baseUrl: "http://10.10.20.50:5005",
   baseUrl: "http://172.252.13.86:5005",
   // prepareHeaders: (headers) => {
   //   const token = JSON.parse(localStorage.getItem("accessToken"));
@@ -23,9 +23,9 @@ const baseQuery = fetchBaseQuery({
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQuery,
-  tagTypes: ["overview", "host"],
+  tagTypes: ["overview", "host", "updateProfile", "category"],
   endpoints: () => ({}),
 });
 
-export const imageUrl = "http://172.252.13.86:5005";
+// export const imageUrl = "http://172.252.13.86:5005";
 // asdfsf
