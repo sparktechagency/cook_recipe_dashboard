@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* table head color change */
+.custom-table .ant-table-thead > tr > th {
+  background-color: #d6fadf; /* slate-800 */
+  color: black;
+  font-weight: 600;
+  padding: 15px;
+}
+/* image upload folder design  */
+:where(
+    .css-dev-only-do-not-override-49qm
+  ).ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload.ant-upload-select,
+:where(
+    .css-dev-only-do-not-override-49qm
+  ).ant-upload-wrapper.ant-upload-picture-circle-wrapper
+  .ant-upload.ant-upload-select {
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  vertical-align: top;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px dashed #d9d9d9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+:where(.css-dev-only-do-not-override-49qm).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > th:not(:last-child):not(.ant-table-selection-column):not(
+    .ant-table-row-expand-icon-cell
+  ):not([colspan])::before,
+:where(.css-dev-only-do-not-override-49qm).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > td:not(:last-child):not(.ant-table-selection-column):not(
+    .ant-table-row-expand-icon-cell
+  ):not([colspan])::before {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 0;
+  width: 1px;
+  height: 1.6em;
+  background-color: #d8212100;
+  transform: translateY(-50%);
+  transition: background-color 0.2s;
+  content: "";
+}
+
+
+
+.children-menu {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.ant-select{
+  
+}
+
+
+
+
+
+select option {
+  background-color: #EDC4C5;
+
+}
+
+
+
+
+
+/* Remove all borders from the Ant Design Table */
+.ant-table {
+  border: none !important;
+}
+
+.ant-table-container {
+  border: none !important;
+}
+
+.ant-table-thead > tr > th {
+  border: none !important;
+  background: #f5f5f5; /* Optional: Header Background */
+}
+
+.ant-table-tbody > tr > td {
+  border: none !important;
+}
+
+.ant-pagination {
+  border: none !important;
+}
+
+
+
+
+
+/* Pagination buttons style */
+.ant-pagination-item {
+  border-radius: 50% !important; /* Make buttons circular */
+}
+
+/* Active pagination button */
+.ant-pagination-item-active {
+  background-color: #D9000A !important; /* Active background color */
+  border-color: #D9000A !important;    /* Active border color */
+}
+
+/* Active pagination button text */
+.ant-pagination-item-active > a {
+  color: white !important; /* Ensure active text color is white */
+}
+
+/* Hover effect for buttons */
+
+
+
+/* In your CSS file or inside a styled-components if you're using them */
+.no-border-radius-modal .ant-modal {
+  border-radius: 0 !important;
+}
+
+
+
+
+/* :where(.css-dev-only-do-not-override-49qm)[class^="ant-checkbox"] [class^="ant-checkbox"], :where(.css-dev-only-do-not-override-49qm)[class*=" ant-checkbox"] [class^="ant-checkbox"], :where(.css-dev-only-do-not-override-49qm)[class^="ant-checkbox"] [class*=" ant-checkbox"], :where(.css-dev-only-do-not-override-49qm)[class*=" ant-checkbox"] [class*=" ant-checkbox"] {
+    box-sizing: border-box;
+    background-color: #D9000A;
+} */
+
+:where(.css-dev-only-do-not-override-49qm).ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+
+
+:where(.css-dev-only-do-not-override-49qm).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #ff3916;
+  
+}
+
+
+
+
+.custom-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: red !important; /* Active ট্যাবের টেক্সট লাল হবে */
+}
+
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: red !important; /* Active ট্যাবের নিচের বর্ডার লাল হবে */
+}
+
+
+.custom-tabs .ant-tabs-tab:hover {
+  color: inherit !important; 
+}
+
+.custom-tabs .ant-tabs-tab-btn:hover {
+  color: inherit !important; /* ট্যাবের বাটনের hover রঙ রিমুভ */
+}
+
+
+.custom-tabs .ant-tabs-tab {
+  border-bottom: none !important; /* প্রতিটি ট্যাবের নিচে থাকা বর্ডার রিমুভ */
+}
+
+.custom-tabs .ant-tabs-tab-active {
+  border-bottom: 2px solid red !important; /* শুধুমাত্র অ্যাক্টিভ ট্যাবের জন্য বর্ডার */
+}
+
+
+
+
+
+
+.ant-pagination .ant-pagination-item {
+  background-color: transparent !important; 
+  border-color: transparent !important; 
+  border-radius: 5px !important;
+  color: #495F48 !important;
+}
+
+.ant-pagination .ant-pagination-item-active {
+  color: black !important;
+  background-color: white !important;
+  border-color: #495F48 !important;
+  border-radius: 5px !important;
+}
+
+.ant-pagination .ant-pagination-item a {
+  color: #495F48 !important;
+}
+
+.ant-pagination .ant-pagination-item-active a {
+  color: #495F48 !important;
+}
+
