@@ -10,13 +10,15 @@ import {
   Upload,
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navigate from "../../Navigate";
 import { useAddRecipeMutation } from "../redux/api/routeApi";
+import { useGetCategoriesQuery } from "../redux/api/categoryApi";
 
 const AddRecipe = () => {
   const [form] = Form.useForm();
   const [addRecipe] = useAddRecipeMutation();
+  const { data: categoriesData } = useGetCategoriesQuery({ limit: 100 });
   const [fileList, setFileList] = useState([]);
   const [loading, setLoading] = useState(false);
   const onChange = ({ fileList: newFileList }) => {
@@ -120,25 +122,12 @@ const AddRecipe = () => {
                 name="category"
                 rules={[{ required: true, message: "Please select meal type" }]}
               >
-                <Select style={{ height:"40px" }} placeholder="Select Event Type">
-                  <Select.Option value="breakfast">Breakfast</Select.Option>
-                  <Select.Option value="lunches-and-dinners">
-                    Lunch
-                  </Select.Option>
-                  <Select.Option value="appetizers">Dinner</Select.Option>
-                  <Select.Option value="salads">Appetizers</Select.Option>
-                  <Select.Option value="sides">Sides</Select.Option>
-                  <Select.Option value="desserts">desserts</Select.Option>
-                  <Select.Option value="smoothies/shakes">
-                    smoothies/shakes
-                  </Select.Option>
-                  <Select.Option value="soups">Soup</Select.Option>
-                  <Select.Option value="salad-dressings">
-                    salad-dressings
-                  </Select.Option>
-                  <Select.Option value="jams/marmalades">
-                    jams/marmalades
-                  </Select.Option>
+                <Select style={{ height: "40px" }} placeholder="Select Meal Type">
+                  {categoriesData?.data?.map((category) => (
+                    <Select.Option key={category._id} value={category.slug}>
+                      {category.name}
+                    </Select.Option>
+                  ))}
                 </Select>
               </Form.Item>
 

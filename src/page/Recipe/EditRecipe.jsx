@@ -1,32 +1,30 @@
 import {
   Button,
   Checkbox,
-  ConfigProvider,
   Form,
   Input,
   message,
   Radio,
   Select,
-  Space,
   Spin,
   Upload,
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navigate from "../../Navigate";
 import { useParams } from "react-router-dom";
 import {
   useGetRecipeDetailsQuery,
   useUpdateRecipeMutation,
 } from "../redux/api/routeApi";
+import { useGetCategoriesQuery } from "../redux/api/categoryApi";
 
 const EditRecipe = () => {
   const { id } = useParams();
   const {
     data: recipe,
-    isLoading,
-    isError,
   } = useGetRecipeDetailsQuery({ id }, { refetchOnMountOrArgChange: true });
+  const { data: categoriesData } = useGetCategoriesQuery({ limit: 100 });
   console.log(recipe);
   const [updateRecipe] = useUpdateRecipeMutation();
   const [form] = Form.useForm();
@@ -102,7 +100,6 @@ const EditRecipe = () => {
 
   const onFinish = async (values) => {
     const id = recipe?.data?._id;
-    const existingImages = fileList.filter((file) => file.url);
     const newImages = fileList.filter((file) => file.originFileObj);
     console.log(id);
     console.log(values);
@@ -163,7 +160,6 @@ const EditRecipe = () => {
     }
   };
 
-  const onFinishFailed = (errorInfo) => {};
 
   return (
     <div className="bg-white p-3 h-[87vh] overflow-auto ">
@@ -192,25 +188,12 @@ const EditRecipe = () => {
                 name="category"
                 rules={[{ required: true, message: "Please select meal type" }]}
               >
-                <Select style={{ height:"40px" }} placeholder={"Select Event Type"}>
-                  <Select.Option value="breakfast">Breakfast</Select.Option>
-                  <Select.Option value="lunches-and-dinners">
-                    Lunch
-                  </Select.Option>
-                  <Select.Option value="appetizers">Dinner</Select.Option>
-                  <Select.Option value="salads">Appetizers</Select.Option>
-                  <Select.Option value="sides">Sides</Select.Option>
-                  <Select.Option value="desserts">desserts</Select.Option>
-                  <Select.Option value="smoothies/shakes">
-                    smoothies/shakes
-                  </Select.Option>
-                  <Select.Option value="soups">Soup</Select.Option>
-                  <Select.Option value="salad-dressings">
-                    salad-dressings
-                  </Select.Option>
-                  <Select.Option value="jams/marmalades">
-                    jams/marmalades
-                  </Select.Option>
+                <Select style={{ height: "40px" }} placeholder={"Select Meal Type"}>
+                  {categoriesData?.data?.map((category) => (
+                    <Select.Option key={category._id} value={category.slug}>
+                      {category.name}
+                    </Select.Option>
+                  ))}
                 </Select>
               </Form.Item>
 
