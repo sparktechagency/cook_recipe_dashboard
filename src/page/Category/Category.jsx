@@ -69,6 +69,12 @@ const Category = () => {
       key: "name",
     },
     {
+      title: "Slug",
+      dataIndex: "slug",
+      key: "slug",
+      render: (slug) => <span className="text-gray-500">{slug}</span>,
+    },
+    {
       title: "Status",
       dataIndex: "status",
       key: "status",
@@ -105,6 +111,7 @@ const Category = () => {
     id: item._id,
     sl: (currentPage - 1) * pageSize + index + 1,
     name: item.name,
+    slug: item.slug,
     image: item.image,
     status: item.status,
   })) || [];

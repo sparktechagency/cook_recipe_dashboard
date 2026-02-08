@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Modal, Form, Input, Upload, message, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
@@ -22,6 +23,7 @@ export const AddCategoryModal = ({ open, setOpen }) => {
 
     const formData = new FormData();
     formData.append("name", values.name);
+    formData.append("slug", values.slug);
     formData.append("image", fileList[0].originFileObj);
 
     try {
@@ -55,6 +57,14 @@ export const AddCategoryModal = ({ open, setOpen }) => {
           rules={[{ required: true, message: "Please enter category name" }]}
         >
           <Input placeholder="Enter category name" className="h-10" />
+        </Form.Item>
+
+        <Form.Item
+          name="slug"
+          label="Slug"
+          rules={[{ required: true, message: "Please enter slug" }]}
+        >
+          <Input placeholder="Enter slug" className="h-10" />
         </Form.Item>
 
         <Form.Item

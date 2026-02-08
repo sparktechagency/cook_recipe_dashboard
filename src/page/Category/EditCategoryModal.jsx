@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import { Modal, Form, Input, Select, message, Button } from "antd";
-import { useEffect } from "react";
+import { Modal, Form, Input, Select, message, Button, Upload } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { useEffect, useState } from "react";
 import { useUpdateCategoryMutation } from "../redux/api/categoryApi";
 
 export const EditCategoryModal = ({ open, setOpen, category }) => {
   const [form] = Form.useForm();
+  const [fileList, setFileList] = useState([]);
   const [updateCategory, { isLoading }] = useUpdateCategoryMutation();
 
   useEffect(() => {
@@ -13,19 +15,38 @@ export const EditCategoryModal = ({ open, setOpen, category }) => {
         name: category.name,
         status: category.status,
       });
+      if (category.image) {
+        setFileList([
+          {
+            uid: "-1",
+            name: "image.png",
+            status: "done",
+            url: category.image,
+          },
+        ]);
+      }
     }
   }, [category, form]);
 
   const handleCancel = () => {
     setOpen(false);
     form.resetFields();
+    setFileList([]);
   };
 
   const onFinish = async (values) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("status", values.status);
+    
+    if (fileList.length > 0 && fileList[0].originFileObj) {
+      formData.append("image", fileList[0].originFileObj);
+    }
+
     try {
       const res = await updateCategory({
         id: category.id,
-        data: values,
+        data: formData,
       }).unwrap();
       message.success(res?.message || "Category updated successfully");
       handleCancel();
@@ -33,6 +54,8 @@ export const EditCategoryModal = ({ open, setOpen, category }) => {
       message.error(error?.data?.message || "Failed to update category");
     }
   };
+
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
   return (
     <Modal
@@ -65,6 +88,25 @@ export const EditCategoryModal = ({ open, setOpen, category }) => {
             <Select.Option value="visible">Visible</Select.Option>
             <Select.Option value="hidden">Hidden</Select.Option>
           </Select>
+        </Form.Item>
+
+        <Form.Item
+          label="Category Image"
+        >
+          <Upload
+            listType="picture-card"
+            fileList={fileList}
+            onChange={handleChange}
+            beforeUpload={() => false}
+            maxCount={1}
+          >
+            {fileList.length >= 1 ? null : (
+              <div>
+                <PlusOutlined />
+                <div style={{ marginTop: 8 }}>Upload</div>
+              </div>
+            )}
+          </Upload>
         </Form.Item>
 
         <Form.Item className="mb-0 flex justify-end">
