@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: "http://10.10.20.50:5005",
-  baseUrl: "http://172.252.13.86:5005",
+  baseUrl: "https://backend.koumanisdietapp.com",
+  // baseUrl: "http://172.252.13.86:5005",
   // prepareHeaders: (headers) => {
   //   const token = JSON.parse(localStorage.getItem("accessToken"));
   //   if (token) {
